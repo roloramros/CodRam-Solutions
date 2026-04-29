@@ -1,11 +1,21 @@
 const express = require('express');
 const cors = require('cors');
 const nodemailer = require('nodemailer');
+const { body, validationResult } = require('express-validator');
 require('dotenv').config();
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+// Configure Nodemailer transporter
+const transporter = nodemailer.createTransport({
+  service: 'gmail', // You can change this or make it configurable via env
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
+  },
+});
 
 app.post('/api/contact', async (req, res) => {
   const { name, email, service, message } = req.body;
