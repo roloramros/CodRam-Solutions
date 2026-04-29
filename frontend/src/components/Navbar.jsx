@@ -10,7 +10,7 @@ const Navbar = () => (
         <Link to="/portfolio" className="hover:text-primary transition-colors duration-300">Portfolio</Link>
         <Link to="/contact" className="hover:text-primary transition-colors duration-300">Contact</Link>
       </div>
-      <button className="bg-primary text-black px-6 py-2 rounded-full font-bold hover:shadow-[0_0_15px_#00AEEF] transition-all duration-300">
+      <button className="bg-primary text-black px-6 py-2 rounded-full font-bold hover:shadow-[0_0_15px_theme(colors.primary)] transition-all duration-300">
         Request Quote
       </button>
     </div>
