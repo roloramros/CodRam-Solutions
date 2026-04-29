@@ -17,20 +17,44 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-app.post('/api/contact', async (req, res) => {
-  const { name, email, service, message } = req.body;
-  
-  // Basic validation
-  if (!name || !email || !message) {
-    return res.status(400).json({ error: 'Missing required fields (name, email, message)' });
+app.post(
+  '/api/contact',
+  [
+    body('name').trim().notEmpty().withMessage('Name is required').escape(),
+    body('email').isEmail().withMessage('Valid email is required').normalizeEmail(),
+    body('message').trim().notEmpty().withMessage('Message is required').escape(),
+    body('service').optional().trim().escape(),
+  ],
+  async (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    const { name, email, service, message } = req.body;
+
+    try {
+      const mailOptions = {
+        from: process.env.EMAIL_USER,
+        to: process.env.EMAIL_TO,
+        subject: `New Contact Submission from ${name}`,
+        text: `
+          Name: ${name}
+          Email: ${email}
+          Service: ${service || 'Not specified'}
+          Message: ${message}
+        `,
+      };
+
+      await transporter.sendMail(mailOptions);
+      console.log('Email sent successfully');
+
+      res.status(200).json({ success: 'Message sent successfully. We will contact you soon.' });
+    } catch (error) {
+      next(error); // Pass to global error handler
+    }
   }
-  
-  // In a real scenario, you'd configure Nodemailer here.
-  // For now, we'll log the submission and return success.
-  console.log('New Contact Submission:', { name, email, service, message });
-  
-  res.status(200).json({ success: 'Message received successfully. We will contact you soon.' });
-});
+);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
