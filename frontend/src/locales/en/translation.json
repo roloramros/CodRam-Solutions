@@ -1,0 +1,26 @@
+{
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "portfolio": "Portfolio",
+    "contact": "Contact",
+    "quote": "Request Quote"
+  },
+  "hero": {
+    "title_start": "Your vision, transformed into",
+    "title_accent": "software",
+    "subtitle": "We build custom digital solutions that help businesses grow faster.",
+    "cta_services": "View Services",
+    "cta_contact": "Contact Now"
+  },
+  "footer": {
+    "description": "Premium software agency specializing in futuristic, scalable, and high-performance digital solutions.",
+    "links": "Quick Links",
+    "services": "Services",
+    "contact": "Contact Us",
+    "hq": "Digital Headquarters",
+    "address": "20°00'51.2\"N 75°50'04.7\"W",
+    "map_link": "https://www.google.com/maps/search/?api=1&query=20.014222,-75.834639",
+    "rights": "All rights reserved."
+  }
+}
