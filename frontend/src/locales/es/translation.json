@@ -1,0 +1,26 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "services": "Servicios",
+    "portfolio": "Portafolio",
+    "contact": "Contacto",
+    "quote": "Pedir Presupuesto"
+  },
+  "hero": {
+    "title_start": "Tu visión, transformada en",
+    "title_accent": "software",
+    "subtitle": "Creamos soluciones digitales a medida que ayudan a las empresas a crecer más rápido.",
+    "cta_services": "Ver Servicios",
+    "cta_contact": "Contactar Ahora"
+  },
+  "footer": {
+    "description": "Agencia de software premium especializada en soluciones digitales futuristas, escalables y de alto rendimiento.",
+    "links": "Enlaces Rápidos",
+    "services": "Servicios",
+    "contact": "Contáctanos",
+    "hq": "Sede Digital",
+    "address": "20°00'51.2\"N 75°50'04.7\"W",
+    "map_link": "https://www.google.com/maps/search/?api=1&query=20.014222,-75.834639",
+    "rights": "Todos los derechos reservados."
+  }
+}
