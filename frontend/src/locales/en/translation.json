@@ -22,5 +22,19 @@
     "address": "20°00'51.2\"N 75°50'04.7\"W",
     "map_link": "https://www.google.com/maps/search/?api=1&query=20.014222,-75.834639",
     "rights": "All rights reserved."
+  },
+  "portfolio": {
+    "title": "Our Projects",
+    "subtitle": "Explore our innovative digital solutions.",
+    "projects": {
+      "ecommerce": {
+        "title": "Futuristic E-commerce",
+        "description": "High-performance sales platform with cyberpunk design and fluid transitions."
+      },
+      "logistica": {
+        "title": "Logistics App",
+        "description": "Fleet management system and real-time tracking to optimize deliveries."
+      }
+    }
   }
 }

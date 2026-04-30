@@ -22,5 +22,19 @@
     "address": "20°00'51.2\"N 75°50'04.7\"W",
     "map_link": "https://www.google.com/maps/search/?api=1&query=20.014222,-75.834639",
     "rights": "Todos los derechos reservados."
+  },
+  "portfolio": {
+    "title": "Nuestros Proyectos",
+    "subtitle": "Explora nuestras soluciones digitales innovadoras.",
+    "projects": {
+      "ecommerce": {
+        "title": "E-commerce Futurista",
+        "description": "Plataforma de ventas de alto rendimiento con diseño cyberpunk y transiciones fluidas."
+      },
+      "logistica": {
+        "title": "App de Logística",
+        "description": "Sistema de gestión de flotas y seguimiento en tiempo real para optimizar entregas."
+      }
+    }
   }
 }
