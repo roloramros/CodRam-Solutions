@@ -5,6 +5,8 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 const ProjectCarousel = ({ images }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  if (!images || images.length === 0) return null;
+
   const nextSlide = (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -18,11 +20,12 @@ const ProjectCarousel = ({ images }) => {
   };
 
   return (
-    <div className="relative group w-full h-[300px] bg-black/20 rounded-t-xl overflow-hidden">
+    <div className="relative group w-full aspect-video bg-black/20 rounded-t-xl overflow-hidden">
       <AnimatePresence mode="wait">
         <motion.img
           key={currentIndex}
           src={images[currentIndex]}
+          alt={`Project image ${currentIndex + 1}`}
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: -20 }}
