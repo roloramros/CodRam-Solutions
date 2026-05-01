@@ -3,16 +3,6 @@ import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useEffect } from 'react';
 
 const ImageModal = ({ isOpen, images = [], currentIndex = 0, onIndexChange, onClose }) => {
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (e.key === 'Escape') onClose();
-      if (e.key === 'ArrowRight') nextImage();
-      if (e.key === 'ArrowLeft') prevImage();
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [onClose, currentIndex, images.length]);
-
   const nextImage = (e) => {
     e?.stopPropagation();
     if (images.length > 1) {
@@ -26,6 +16,16 @@ const ImageModal = ({ isOpen, images = [], currentIndex = 0, onIndexChange, onCl
       onIndexChange((currentIndex - 1 + images.length) % images.length);
     }
   };
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') onClose();
+      if (e.key === 'ArrowRight') nextImage();
+      if (e.key === 'ArrowLeft') prevImage();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [onClose, nextImage, prevImage]);
 
   const currentImage = images[currentIndex];
 
