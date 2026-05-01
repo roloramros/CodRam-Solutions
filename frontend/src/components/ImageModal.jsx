@@ -1,21 +1,21 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
-import { useEffect } from 'react';
+import { useEffect, useCallback } from 'react';
 
 const ImageModal = ({ isOpen, images = [], currentIndex = 0, onIndexChange, onClose }) => {
-  const nextImage = (e) => {
+  const nextImage = useCallback((e) => {
     e?.stopPropagation();
     if (images.length > 1) {
       onIndexChange((currentIndex + 1) % images.length);
     }
-  };
+  }, [images.length, currentIndex, onIndexChange]);
 
-  const prevImage = (e) => {
+  const prevImage = useCallback((e) => {
     e?.stopPropagation();
     if (images.length > 1) {
       onIndexChange((currentIndex - 1 + images.length) % images.length);
     }
-  };
+  }, [images.length, currentIndex, onIndexChange]);
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -71,7 +71,7 @@ const ImageModal = ({ isOpen, images = [], currentIndex = 0, onIndexChange, onCl
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: -20, opacity: 0 }}
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-            drag="x"
+            drag={images.length > 1 ? "x" : false}
             dragConstraints={{ left: 0, right: 0 }}
             dragElastic={0.7}
             onDragEnd={(_, info) => {
