@@ -1,10 +1,18 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import projects from '../data/projects.json';
 import ProjectCarousel from '../components/ProjectCarousel';
+import ImageModal from '../components/ImageModal';
 
 const Portfolio = () => {
   const { t } = useTranslation();
+  const [expandedProjects, setExpandedProjects] = useState({});
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  const toggleExpand = (id) => {
+    setExpandedProjects(prev => ({ ...prev, [id]: !prev[id] }));
+  };
 
   return (
     <div className="min-h-screen pt-24 pb-20 px-4">
@@ -27,10 +35,25 @@ const Portfolio = () => {
               transition={{ delay: index * 0.1 }}
               className="bg-white/5 border border-white/10 rounded-xl overflow-hidden hover:border-primary/50 transition-colors"
             >
-              <ProjectCarousel images={project.images} />
+              <ProjectCarousel 
+                images={project.images} 
+                onImageClick={(img) => setSelectedImage(img)}
+              />
               <div className="p-6">
                 <h3 className="text-xl font-bold mb-2 text-primary">{t(project.titleKey)}</h3>
-                <p className="text-gray text-sm mb-4 line-clamp-2">{t(project.descriptionKey)}</p>
+                <div>
+                  <p className={`text-gray text-sm mb-4 transition-all duration-300 ${
+                    expandedProjects[project.id] ? '' : 'line-clamp-2'
+                  }`}>
+                    {t(project.descriptionKey)}
+                  </p>
+                  <button 
+                    onClick={() => toggleExpand(project.id)}
+                    className="text-primary text-xs font-bold hover:underline mb-4 block"
+                  >
+                    {expandedProjects[project.id] ? t('portfolio.see_less') : t('portfolio.see_more')}
+                  </button>
+                </div>
                 <div className="flex flex-wrap gap-2">
                   {project.tags.map(tag => (
                     <span key={tag} className="text-xs bg-primary/10 text-primary px-2 py-1 rounded border border-primary/20">
@@ -43,6 +66,12 @@ const Portfolio = () => {
           ))}
         </div>
       </div>
+      
+      <ImageModal 
+        isOpen={!!selectedImage} 
+        image={selectedImage} 
+        onClose={() => setSelectedImage(null)} 
+      />
     </div>
   );
 };

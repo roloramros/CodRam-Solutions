@@ -26,14 +26,16 @@
   "portfolio": {
     "title": "Nuestros Proyectos",
     "subtitle": "Explora nuestras soluciones digitales innovadoras.",
+    "see_more": "... ver más",
+    "see_less": "Ver menos",
     "projects": {
       "ecommerce": {
-        "title": "E-commerce Futurista",
-        "description": "Plataforma de ventas de alto rendimiento con diseño cyberpunk y transiciones fluidas."
+        "title": "GestInst IIAC — Sistema de gestión de activos de instrumentación industrial",
+        "description": "Desarrollo full-stack de una solución cliente-servidor para la gestión de instrumentos industriales. Incluye API REST con autenticación JWT y control de roles, aplicación Android nativa con inventario, búsqueda avanzada y CRUD completo, además de una base de datos optimizada para alto rendimiento."
       },
       "logistica": {
-        "title": "App de Logística",
-        "description": "Sistema de gestión de flotas y seguimiento en tiempo real para optimizar entregas."
+        "title": "Análisis de Patrones de Lotería",
+        "description": "Desarrollo de una aplicación de escritorio en C# (WPF / .NET 8) para el análisis estadístico de datos históricos de lotería. Incluye algoritmos de detección de patrones, búsqueda avanzada, visualización gráfica interactiva y un sistema de gestión de análisis personalizados, optimizado para manejar grandes volúmenes de datos con alto rendimiento."
       }
     }
   }

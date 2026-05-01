@@ -26,14 +26,16 @@
   "portfolio": {
     "title": "Our Projects",
     "subtitle": "Explore our innovative digital solutions.",
+    "see_more": "... see more",
+    "see_less": "See less",
     "projects": {
       "ecommerce": {
-        "title": "Futuristic E-commerce",
-        "description": "High-performance sales platform with cyberpunk design and fluid transitions."
+        "title": "GestInst IIAC — Industrial Instrumentation Asset Management System",
+        "description": "Full-stack development of a client-server solution for managing industrial instruments. Features a REST API with JWT authentication and role-based access control, a native Android app with inventory, advanced search, and full CRUD functionality, along with a high-performance optimized database."
       },
       "logistica": {
-        "title": "Logistics App",
-        "description": "Fleet management system and real-time tracking to optimize deliveries."
+        "title": "LottoPattern Analytics",
+        "description": "Development of a desktop application in C# (WPF / .NET 8) for statistical analysis of historical lottery data. Features pattern detection algorithms, advanced search, interactive data visualization, and a system for managing custom analyses, optimized for high performance with large datasets."
       }
     }
   }
