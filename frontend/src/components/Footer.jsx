@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Github, Linkedin, Twitter, Mail, MapPin, Phone } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import logo from '../assets/logo.jpg';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -11,7 +12,10 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-12">
         {/* Brand Column */}
         <div className="space-y-4">
-          <Link to="/" className="text-primary font-bold text-2xl tracking-tighter">CodRam</Link>
+          <Link to="/" className="text-primary font-bold text-2xl tracking-tighter flex items-center">
+            <img src={logo} alt="CodRam Logo" className="h-8 w-auto mr-2 rounded-sm" />
+            CodRam
+          </Link>
           <p className="text-gray text-sm leading-relaxed">
             {t('footer.description')}
           </p>
