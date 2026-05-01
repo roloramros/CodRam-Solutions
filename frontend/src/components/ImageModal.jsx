@@ -71,7 +71,14 @@ const ImageModal = ({ isOpen, images = [], currentIndex = 0, onIndexChange, onCl
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: -20, opacity: 0 }}
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-            className="relative max-w-full max-h-full flex items-center justify-center"
+            drag="x"
+            dragConstraints={{ left: 0, right: 0 }}
+            dragElastic={0.7}
+            onDragEnd={(_, info) => {
+              if (info.offset.x < -50) nextImage();
+              if (info.offset.x > 50) prevImage();
+            }}
+            className="relative max-w-full max-h-full flex items-center justify-center cursor-grab active:cursor-grabbing"
             onClick={(e) => e.stopPropagation()}
           >
             <img
