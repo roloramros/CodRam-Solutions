@@ -22,7 +22,7 @@ const ProjectCarousel = ({ images, onImageClick }) => {
   return (
     <div 
       className="relative group w-full aspect-video bg-black/40 rounded-t-xl overflow-hidden cursor-pointer"
-      onClick={() => onImageClick && onImageClick(images[currentIndex])}
+      onClick={() => onImageClick && onImageClick(images, currentIndex)}
     >
       <AnimatePresence mode="wait">
         <motion.div

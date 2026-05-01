@@ -1,15 +1,33 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { X } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useEffect } from 'react';
 
-const ImageModal = ({ isOpen, image, onClose }) => {
+const ImageModal = ({ isOpen, images = [], currentIndex = 0, onIndexChange, onClose }) => {
   useEffect(() => {
-    const handleEsc = (e) => {
+    const handleKeyDown = (e) => {
       if (e.key === 'Escape') onClose();
+      if (e.key === 'ArrowRight') nextImage();
+      if (e.key === 'ArrowLeft') prevImage();
     };
-    window.addEventListener('keydown', handleEsc);
-    return () => window.removeEventListener('keydown', handleEsc);
-  }, [onClose]);
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [onClose, currentIndex, images.length]);
+
+  const nextImage = (e) => {
+    e?.stopPropagation();
+    if (images.length > 1) {
+      onIndexChange((currentIndex + 1) % images.length);
+    }
+  };
+
+  const prevImage = (e) => {
+    e?.stopPropagation();
+    if (images.length > 1) {
+      onIndexChange((currentIndex - 1 + images.length) % images.length);
+    }
+  };
+
+  const currentImage = images[currentIndex];
 
   return (
     <AnimatePresence>
@@ -30,19 +48,42 @@ const ImageModal = ({ isOpen, image, onClose }) => {
             <X size={32} />
           </motion.button>
 
+          {images.length > 1 && (
+            <>
+              <button
+                onClick={prevImage}
+                className="absolute left-4 md:left-10 top-1/2 -translate-y-1/2 text-white/50 hover:text-white transition-colors z-[110] bg-white/10 hover:bg-white/20 p-2 rounded-full"
+              >
+                <ChevronLeft size={48} />
+              </button>
+              <button
+                onClick={nextImage}
+                className="absolute right-4 md:right-10 top-1/2 -translate-y-1/2 text-white/50 hover:text-white transition-colors z-[110] bg-white/10 hover:bg-white/20 p-2 rounded-full"
+              >
+                <ChevronRight size={48} />
+              </button>
+            </>
+          )}
+
           <motion.div
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.9, opacity: 0 }}
+            key={currentIndex}
+            initial={{ x: 20, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            exit={{ x: -20, opacity: 0 }}
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
             className="relative max-w-full max-h-full flex items-center justify-center"
             onClick={(e) => e.stopPropagation()}
           >
             <img
-              src={image}
-              alt="Full size project"
+              src={currentImage}
+              alt={`Full size project view ${currentIndex + 1}`}
               className="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl"
             />
+            {images.length > 1 && (
+              <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-white/60 text-sm font-medium">
+                {currentIndex + 1} / {images.length}
+              </div>
+            )}
           </motion.div>
         </motion.div>
       )}
