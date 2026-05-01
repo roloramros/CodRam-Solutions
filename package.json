@@ -2,8 +2,12 @@
   "name": "codram-web",
   "private": true,
   "scripts": {
-    "install-all": "npm install && cd frontend && npm install && cd ../backend && npm install",
-    "dev-frontend": "cd frontend && npm run dev",
-    "dev-backend": "cd backend && npm run dev"
+    "instalar-todo": "npm install && cd frontend && npm install && cd ../backend && npm install",
+    "ver-web-local": "cd frontend && npm run dev",
+    "ver-backend-local": "cd backend && npm run dev",
+    "preparar-subida": "npm run build --prefix frontend && powershell -Command \"Compress-Archive -Path backend, frontend/dist, ecosystem.config.js, package.json -DestinationPath deploy.zip -Force\""
+  },
+  "dependencies": {
+    "lucide-react": "^1.14.0"
   }
 }

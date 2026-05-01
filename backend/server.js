@@ -8,12 +8,12 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Configure Nodemailer transporter
+// Configure Nodemailer transporter - Credenciales hardcodeadas
 const transporter = nodemailer.createTransport({
-  service: 'gmail', // You can change this or make it configurable via env
+  service: 'gmail',
   auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
+    user: 'roloramros@gmail.com',
+    pass: 'rwhvatmbuearhapw',  // ← App Password SIN espacios
   },
 });
 
@@ -34,17 +34,17 @@ app.post(
     const { name, email, service, message } = req.body;
 
     try {
-      const mailOptions = {
-        from: process.env.EMAIL_USER,
-        to: process.env.EMAIL_TO,
-        subject: `New Contact Submission from ${name}`,
-        text: `
-          Name: ${name}
-          Email: ${email}
-          Service: ${service || 'Not specified'}
-          Message: ${message}
-        `,
-      };
+      	const mailOptions = {
+  	from: 'roloramros@gmail.com',
+  	to: 'roloramros@gmail.com',  // ← Hardcodeado también
+  	subject: `New Contact Submission from ${name}`,
+  	text: `
+    		Name: ${name}
+    		Email: ${email}
+    		Service: ${service || 'Not specified'}
+    		Message: ${message}
+  		`,
+	};
 
       await transporter.sendMail(mailOptions);
       console.log('Email sent successfully');
@@ -55,6 +55,12 @@ app.post(
     }
   }
 );
+
+// Global error handler
+app.use((err, req, res, next) => {
+  console.error('Unhandled Error:', err);
+  res.status(500).json({ error: 'Internal Server Error' });
+});
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

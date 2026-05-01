@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom';
 import { Github, Linkedin, Twitter, Mail, MapPin, Phone } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const { t } = useTranslation();
 
   return (
     <footer className="bg-black border-t border-white/10 pt-16 pb-8">
@@ -11,7 +13,7 @@ const Footer = () => {
         <div className="space-y-4">
           <Link to="/" className="text-primary font-bold text-2xl tracking-tighter">CodRam</Link>
           <p className="text-gray text-sm leading-relaxed">
-            Premium software agency specializing in futuristic, scalable, and high-performance digital solutions.
+            {t('footer.description')}
           </p>
           <div className="flex space-x-4">
             <a href="#" className="text-gray hover:text-primary transition-colors"><Github size={20} /></a>
@@ -22,18 +24,18 @@ const Footer = () => {
 
         {/* Quick Links */}
         <div>
-          <h4 className="text-white font-bold mb-6">Quick Links</h4>
+          <h4 className="text-white font-bold mb-6">{t('footer.links')}</h4>
           <ul className="space-y-4 text-sm text-gray">
-            <li><Link to="/" className="hover:text-primary transition-colors">Home</Link></li>
-            <li><Link to="/services" className="hover:text-primary transition-colors">Services</Link></li>
-            <li><Link to="/portfolio" className="hover:text-primary transition-colors">Portfolio</Link></li>
-            <li><Link to="/contact" className="hover:text-primary transition-colors">Contact</Link></li>
+            <li><Link to="/" className="hover:text-primary transition-colors">{t('nav.home')}</Link></li>
+            <li><Link to="/services" className="hover:text-primary transition-colors">{t('nav.services')}</Link></li>
+            <li><Link to="/portfolio" className="hover:text-primary transition-colors">{t('nav.portfolio')}</Link></li>
+            <li><Link to="/contact" className="hover:text-primary transition-colors">{t('nav.contact')}</Link></li>
           </ul>
         </div>
 
         {/* Services */}
         <div>
-          <h4 className="text-white font-bold mb-6">Services</h4>
+          <h4 className="text-white font-bold mb-6">{t('footer.services')}</h4>
           <ul className="space-y-4 text-sm text-gray">
             <li className="hover:text-primary transition-colors cursor-pointer">Web Development</li>
             <li className="hover:text-primary transition-colors cursor-pointer">Mobile Apps</li>
@@ -44,24 +46,32 @@ const Footer = () => {
 
         {/* Contact Info */}
         <div className="space-y-4">
-          <h4 className="text-white font-bold mb-6">Contact Us</h4>
-          <div className="flex items-start space-x-3 text-sm text-gray">
-            <MapPin size={18} className="text-primary shrink-0" />
-            <span>Digital Headquarters</span>
-          </div>
+          <h4 className="text-white font-bold mb-6">{t('footer.contact')}</h4>
+          <a 
+            href={t('footer.map_link')} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="flex items-start space-x-3 text-sm text-gray hover:text-primary transition-colors group"
+          >
+            <MapPin size={18} className="text-primary shrink-0 group-hover:scale-110 transition-transform" />
+            <div className="flex flex-col">
+              <span className="font-semibold text-white">{t('footer.hq')}</span>
+              <span>{t('footer.address')}</span>
+            </div>
+          </a>
           <div className="flex items-center space-x-3 text-sm text-gray">
             <Mail size={18} className="text-primary shrink-0" />
-            <span>contact@codram.com</span>
+            <span>roloramros@gmail.com</span>
           </div>
           <div className="flex items-center space-x-3 text-sm text-gray">
             <Phone size={18} className="text-primary shrink-0" />
-            <span>+1 (555) COD-RAM</span>
+            <span>+53 50140609</span>
           </div>
         </div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 mt-16 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-xs text-gray/50">
-        <p>© {currentYear} CodRam. All rights reserved.</p>
+        <p>© {currentYear} CodRam. {t('footer.rights')}</p>
         <div className="flex space-x-6 mt-4 md:mt-0">
           <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
           <a href="#" className="hover:text-white transition-colors">Terms of Service</a>

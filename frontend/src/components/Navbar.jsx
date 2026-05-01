@@ -1,15 +1,22 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Globe } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { t, i18n } = useTranslation();
+
+  const toggleLanguage = () => {
+    const newLang = i18n.language === 'es' ? 'en' : 'es';
+    i18n.changeLanguage(newLang);
+  };
 
   const navLinks = [
-    { name: 'Home', path: '/' },
-    { name: 'Services', path: '/services' },
-    { name: 'Portfolio', path: '/portfolio' },
-    { name: 'Contact', path: '/contact' },
+    { name: t('nav.home'), path: '/' },
+    { name: t('nav.services'), path: '/services' },
+    { name: t('nav.portfolio'), path: '/portfolio' },
+    { name: t('nav.contact'), path: '/contact' },
   ];
 
   return (
@@ -18,7 +25,7 @@ const Navbar = () => {
         <Link to="/" className="text-primary font-bold text-2xl tracking-tighter" onClick={() => setIsOpen(false)}>CodRam</Link>
         
         {/* Desktop Links */}
-        <div className="hidden md:flex space-x-8">
+        <div className="hidden md:flex items-center space-x-8">
           {navLinks.map((link) => (
             <Link 
               key={link.name} 
@@ -28,11 +35,18 @@ const Navbar = () => {
               {link.name}
             </Link>
           ))}
+          <button 
+            onClick={toggleLanguage}
+            className="flex items-center gap-2 text-gray hover:text-primary transition-colors text-sm font-medium uppercase border border-white/10 px-3 py-1 rounded-md"
+          >
+            <Globe size={16} />
+            {i18n.language === 'es' ? 'EN' : 'ES'}
+          </button>
         </div>
 
         <div className="flex items-center space-x-4">
           <button className="hidden sm:block bg-primary text-black px-6 py-2 rounded-full font-bold hover:shadow-[0_0_15px_theme(colors.primary)] transition-all duration-300">
-            Request Quote
+            {t('nav.quote')}
           </button>
 
           {/* Mobile Menu Button */}
@@ -59,9 +73,18 @@ const Navbar = () => {
               {link.name}
             </Link>
           ))}
-          <button className="bg-primary text-black px-6 py-3 rounded-full font-bold">
-            Request Quote
-          </button>
+          <div className="flex justify-between items-center pt-4 border-t border-white/10">
+            <button 
+              onClick={() => { toggleLanguage(); setIsOpen(false); }}
+              className="flex items-center gap-2 text-white hover:text-primary transition-colors font-medium"
+            >
+              <Globe size={20} />
+              {i18n.language === 'es' ? 'English' : 'Español'}
+            </button>
+            <button className="bg-primary text-black px-6 py-3 rounded-full font-bold">
+              {t('nav.quote')}
+            </button>
+          </div>
         </div>
       )}
     </nav>

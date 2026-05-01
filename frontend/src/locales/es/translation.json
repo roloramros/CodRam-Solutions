@@ -19,8 +19,8 @@
     "services": "Servicios",
     "contact": "Contáctanos",
     "hq": "Sede Digital",
-    "address": "20°00'51.2\"N 75°50'04.7\"W",
-    "map_link": "https://www.google.com/maps/search/?api=1&query=20.014222,-75.834639",
+    "address": "Gasómetro 258 e/ Calle 6 y Calle 8. Mariana de la Torre",
+    "map_link": "https://www.google.com/maps/search/?api=1&query=20.014144,-75.834605",
     "rights": "Todos los derechos reservados."
   },
   "portfolio": {
@@ -36,6 +36,10 @@
       "logistica": {
         "title": "Análisis de Patrones de Lotería",
         "description": "Desarrollo de una aplicación de escritorio en C# (WPF / .NET 8) para el análisis estadístico de datos históricos de lotería. Incluye algoritmos de detección de patrones, búsqueda avanzada, visualización gráfica interactiva y un sistema de gestión de análisis personalizados, optimizado para manejar grandes volúmenes de datos con alto rendimiento."
+      },
+      "mireserva": {
+        "title": "MiReserva: Plataforma Integral de Gestión Deportiva",
+        "description": "MiReserva es una solución digital diseñada para modernizar la forma en que los complejos deportivos gestionan sus horarios y cómo los jugadores interactúan con ellos. El proyecto transforma el proceso tradicional de reserva presencial en una experiencia fluida, visual y automatizada, reduciendo la fricción administrativa y aumentando la ocupación de las canchas."
       }
     }
   }

@@ -36,6 +36,10 @@
       "logistica": {
         "title": "LottoPattern Analytics",
         "description": "Development of a desktop application in C# (WPF / .NET 8) for statistical analysis of historical lottery data. Features pattern detection algorithms, advanced search, interactive data visualization, and a system for managing custom analyses, optimized for high performance with large datasets."
+      },
+      "mireserva": {
+        "title": "MiReserva: Comprehensive Sports Management Platform",
+        "description": "MiReserva is a digital solution designed to modernize how sports complexes manage their schedules and how players interact with them. The project transforms the traditional in-person booking process into a seamless, visual, and automated experience, reducing administrative friction and increasing court occupancy."
       }
     }
   }

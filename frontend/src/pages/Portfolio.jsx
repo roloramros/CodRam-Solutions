@@ -57,7 +57,7 @@ const Portfolio = () => {
             >
               <ProjectCarousel 
                 images={project.images} 
-                onImageClick={(index) => openModal(project.images, index)}
+                onImageClick={(images, index) => openModal(images, index)}
               />
               <div className="p-6">
                 <h3 className="text-xl font-bold mb-2 text-primary">{t(project.titleKey)}</h3>
