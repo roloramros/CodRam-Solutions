@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
-const ProjectCarousel = ({ images }) => {
+const ProjectCarousel = ({ images, onImageClick }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   if (!images || images.length === 0) return null;
@@ -20,18 +20,31 @@ const ProjectCarousel = ({ images }) => {
   };
 
   return (
-    <div className="relative group w-full aspect-video bg-black/20 rounded-t-xl overflow-hidden">
+    <div 
+      className="relative group w-full aspect-video bg-black/40 rounded-t-xl overflow-hidden cursor-pointer"
+      onClick={() => onImageClick && onImageClick(images[currentIndex])}
+    >
       <AnimatePresence mode="wait">
-        <motion.img
+        <motion.div
           key={currentIndex}
-          src={images[currentIndex]}
-          alt={`Project image ${currentIndex + 1}`}
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: -20 }}
-          transition={{ duration: 0.3 }}
-          className="w-full h-full object-cover"
-        />
+          className="w-full h-full relative flex items-center justify-center bg-black/60"
+        >
+          {/* Background blurred image for aesthetic fill */}
+          <img 
+            src={images[currentIndex]} 
+            alt="" 
+            className="absolute inset-0 w-full h-full object-cover blur-xl opacity-30 scale-110"
+          />
+          <motion.img
+            src={images[currentIndex]}
+            alt={`Project image ${currentIndex + 1}`}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 1.05 }}
+            transition={{ duration: 0.3 }}
+            className="relative z-10 w-full h-full object-contain"
+          />
+        </motion.div>
       </AnimatePresence>
 
       {images.length > 1 && (
