@@ -8,10 +8,30 @@ import ImageModal from '../components/ImageModal';
 const Portfolio = () => {
   const { t } = useTranslation();
   const [expandedProjects, setExpandedProjects] = useState({});
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [modalConfig, setModalConfig] = useState({
+    isOpen: false,
+    images: [],
+    currentIndex: 0
+  });
 
   const toggleExpand = (id) => {
     setExpandedProjects(prev => ({ ...prev, [id]: !prev[id] }));
+  };
+
+  const openModal = (images, index) => {
+    setModalConfig({
+      isOpen: true,
+      images: images,
+      currentIndex: index
+    });
+  };
+
+  const closeModal = () => {
+    setModalConfig(prev => ({ ...prev, isOpen: false }));
+  };
+
+  const handleIndexChange = (newIndex) => {
+    setModalConfig(prev => ({ ...prev, currentIndex: newIndex }));
   };
 
   return (
@@ -37,7 +57,7 @@ const Portfolio = () => {
             >
               <ProjectCarousel 
                 images={project.images} 
-                onImageClick={(img) => setSelectedImage(img)}
+                onImageClick={(index) => openModal(project.images, index)}
               />
               <div className="p-6">
                 <h3 className="text-xl font-bold mb-2 text-primary">{t(project.titleKey)}</h3>
@@ -68,9 +88,11 @@ const Portfolio = () => {
       </div>
       
       <ImageModal 
-        isOpen={!!selectedImage} 
-        image={selectedImage} 
-        onClose={() => setSelectedImage(null)} 
+        isOpen={modalConfig.isOpen} 
+        images={modalConfig.images} 
+        currentIndex={modalConfig.currentIndex}
+        onIndexChange={handleIndexChange}
+        onClose={closeModal} 
       />
     </div>
   );
