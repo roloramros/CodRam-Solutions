@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X, Globe } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import logo from '../assets/logo.jpg';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -22,7 +23,10 @@ const Navbar = () => {
   return (
     <nav className="fixed top-0 w-full z-50 bg-black/50 backdrop-blur-md border-b border-white/10">
       <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-        <Link to="/" className="text-primary font-bold text-2xl tracking-tighter" onClick={() => setIsOpen(false)}>CodRam</Link>
+        <Link to="/" className="flex items-center text-primary font-bold text-2xl tracking-tighter" onClick={() => setIsOpen(false)}>
+          <img src={logo} alt="CodRam Logo" className="h-8 w-auto mr-2 rounded-sm" />
+          CodRam
+        </Link>
         
         {/* Desktop Links */}
         <div className="hidden md:flex items-center space-x-8">
